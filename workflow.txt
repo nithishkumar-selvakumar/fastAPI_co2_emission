@@ -1,0 +1,14 @@
+1. venv
+    - install venv
+    - activate venv
+2. Install deps in termainal
+    - python -m pip install fastapi uvicorn sqlalchemy psycopg2-binary python-dotenv
+3. database.py configuration
+    - dotenv
+    - from sqlalchemy import create_engine
+    - from sqlalchemy.orm import sessionmaker, declarative_base
+    - create get_db method
+4. models.py configuration
+5. main.py configuration
+6. schema.py configuration
+   
