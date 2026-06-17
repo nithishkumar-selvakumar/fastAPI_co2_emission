@@ -12,7 +12,7 @@ app = FastAPI()
 def healthcheck():
     return {"status": "ok"}
 
-@app.post("/emissiondata")
+@app.post("/load-emission-data")
 def load_emission_data(db:Session = Depends(get_db)):
     existing_count = db.query(CO2EmissionRating).count()
 
@@ -46,3 +46,13 @@ def load_emission_data(db:Session = Depends(get_db)):
             "success": False,
             "error": str(e)
         }
+
+@app.get("/brands")
+def get_brand(db:Session = Depends(get_db)):
+    result = db.query(CO2EmissionRating.brand).distinct().all()
+    return [row[0] for row in result]
+
+@app.get("/models/{brand}")
+def get_models_by_brand(brand:str,db:Session = Depends(get_db)):
+    result =  db.query(CO2EmissionRating.model).filter(CO2EmissionRating.brand == brand ).distinct().all()
+    return [row[0] for row in result]
