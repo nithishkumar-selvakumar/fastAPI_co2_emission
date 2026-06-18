@@ -42,3 +42,12 @@ class EmissionService:
                 "error": str(e)
             }
 
+    @staticmethod
+    def get_all_brands(db:Session):
+        result = db.query(EmissionModel.brand).distinct().all()
+        return [row[0] for row in result]
+
+    @staticmethod
+    def get_all_models_by_brand(brand:str,db:Session):
+        result = db.query(EmissionModel.model).filter(EmissionModel.brand == brand).distinct().all()
+        return [row[0] for row in result]
