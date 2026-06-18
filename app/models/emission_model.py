@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float
-from .database import Base
+from ..core.database import Base
 
-class CO2EmissionRating(Base):
+class EmissionModel(Base):
     __tablename__ = "co2_emission_rating"
 
     id = Column(Integer, primary_key=True, index=True)
